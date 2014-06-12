@@ -1,0 +1,16 @@
+<div class="login">
+	<% if flash[:errors] %>
+		<div class="alert">
+			<strong><%= flash[:errors] %></strong> 
+		</div>
+	<% end %>
+	<div class="form">
+		<%= form_tag  index_path, method: :get do |f| %>
+			<%= label_tag :idno,:ID %> 
+			<%= text_field_tag :idno %>
+			<%= label_tag :psw,:Password %>
+			<%= password_field_tag :psw %>
+			<div><%= submit_tag "Sign in",class: "btn btn-large btn-primary" %></div>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,42 @@
+<div class="book-list">
+	<h4>欢迎：<%= @books[0][:name] unless @books.blank? %></h4>
+	<div class="big-title">在借图书</div>
+	<% if @books.blank? %><div>未找到该读者借书信息</div><% end %>
+	<% @books.each do |book| %>
+		<table class="table-list ">
+			<tr>
+				<td>图书流水号：<%= book[:serial_number] %></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>书名：<%= book[:title] %></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>作者：<%= book[:author] %></td>
+				<td>出版社：<%= book[:publish] %></td>
+			</tr>
+			<tr>
+				<td>出版日期：<%= book[:pub_date] %></td>
+				<td>条形码：<%= book[:barcode] %></td>
+			</tr>
+			<tr>
+				<td>馆藏地址：<%= book[:address] %></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>借出日期：<%= book[:borrow_time] %></td>
+				<td>应还日期：<%= book[:due_time] %></td>
+			</tr>
+			<tr>
+				<td>实还日期：</td>
+				<td>续借次数：<%= book[:renews_counts] %></td>
+			</tr>
+			<tr>
+				<td>超期情况：<%= book[:exceed] %></td>
+				<td>续借情况：<%= book[:renews] %></td>
+			</tr>
+		</table>
+		<hr class="dashed-hr" />
+	<% end if @books %>
+</div> 
