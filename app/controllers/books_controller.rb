@@ -12,8 +12,7 @@ class BooksController < ApplicationController
 			flash[:errors] = "用户名或密码不能为空"
 			redirect_to :back
 		else
-			xml_data = get_service_data(params[:idno],params[:psw])
-			@books = xml_parse xml_data		
+			@books = get_books(params[:idno],params[:psw])		
 		end
 	end
 
@@ -23,7 +22,8 @@ class BooksController < ApplicationController
 	    xml_data = RestClient.post 'http://202.120.96.99:8055/libweb.asmx/QueryLoad', :idno => idno, :psw => psw  rescue nil
 	end 
 
-	def xml_parse(data)
+	def get_books(idno,psw)
+		data = get_service_data(idno,psw)
 		doc = Nokogiri::XML(data)
 		books = []
 		doc.xpath('//NewDataSet/Result').map do |i|
